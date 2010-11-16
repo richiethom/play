@@ -437,7 +437,7 @@ public class Logger {
     	if (forceJuli || log4j == null) {
     		return juli.isLoggable(Level.SEVERE);
     	}
-    	return log4j.isEnabledFor(Priority.ERROR);
+    	return true;
     }
     
     /**
@@ -505,7 +505,7 @@ public class Logger {
     	if (forceJuli || log4j == null) {
     		return juli.isLoggable(Level.SEVERE);
     	}
-    	return log4j.isEnabledFor(Priority.FATAL);
+    	return true;
     }
     
     /**
