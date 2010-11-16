@@ -158,6 +158,14 @@ public class Logger {
             }
         }
     }
+    
+    public static boolean isTraceEnabled() {
+    	if (forceJuli || log4j == null) {
+    		return juli.isLoggable(Level.FINEST);
+    	}
+    	return log4j.isTraceEnabled();
+    }
+    
 
     /**
      * Log with DEBUG level
@@ -214,6 +222,17 @@ public class Logger {
                 log4j.error("Oops. Error in Logger !", ex);
             }
         }
+    }
+    
+    /**
+     * Returns true if debug level logging is enabled, false otherwise
+     */
+    
+    public static boolean isDebugEnabled() {
+    	if (forceJuli || log4j == null) {
+    		return juli.isLoggable(Level.FINE);
+    	}
+    	return log4j.isDebugEnabled();
     }
 
     /**
@@ -274,6 +293,17 @@ public class Logger {
     }
 
     /**
+     * Returns true if info level logging is enabled, false otherwise
+     */
+    
+    public static boolean isInfoEnabled() {
+    	if (forceJuli || log4j == null) {
+    		return juli.isLoggable(Level.INFO);
+    	}
+    	return log4j.isInfoEnabled();
+    }
+
+    /**
      * Log with WARN level
      * @param message The message pattern
      * @param args Pattern arguments
@@ -328,6 +358,18 @@ public class Logger {
                 log4j.error("Oops. Error in Logger !", ex);
             }
         }
+    }
+
+    /**
+     * Returns true if warn level logging is enabled, false otherwise. NB: Log4J does not allow
+     * the checking of the warn level, so if the logger is Log4J this method just returns true.
+     */
+    
+    public static boolean isWarnEnabled() {
+    	if (forceJuli || log4j == null) {
+    		return juli.isLoggable(Level.WARNING);
+    	}
+    	return true;
     }
 
     /**
@@ -388,6 +430,17 @@ public class Logger {
     }
 
     /**
+     * Returns true if error level logging is enabled, false otherwise. NB: Log4J does not allow
+     * the checking of the error level, so if the logger is Log4J this method just returns true.
+     */
+    public static boolean isErrorEnabled() {
+    	if (forceJuli || log4j == null) {
+    		return juli.isLoggable(Level.SEVERE);
+    	}
+    	return log4j.isEnabledFor(Priority.ERROR);
+    }
+    
+    /**
      * Log with FATAL level
      * @param message The message pattern
      * @param args Pattern arguments
@@ -442,6 +495,17 @@ public class Logger {
                 log4j.error("Oops. Error in Logger !", ex);
             }
         }
+    }
+    
+    /**
+     * Returns true if fatal level logging is enabled, false otherwise. NB: Log4J does not allow
+     * the checking of the fatal level, so if the logger is Log4J this method just returns true. 
+     */
+    public static boolean isFatalEnabled() {
+    	if (forceJuli || log4j == null) {
+    		return juli.isLoggable(Level.SEVERE);
+    	}
+    	return log4j.isEnabledFor(Priority.FATAL);
     }
     
     /**
